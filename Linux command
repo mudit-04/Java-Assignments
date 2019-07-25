@@ -1,0 +1,14 @@
+curl -s http://public-dns.info/nameserver/br.csv --- Download the csv file
+cut -d, -f1 --- get the first column of downloaded csv file
+shuf --- random arrangement of element
+tail -n 50 ---	print last 50 lines
+xargs -i timeout 1 ping -c1 -w 1 {} --- send only one packet with 1 sec timeout to each IP Address which we get from the prevoius command.
+grep "time=" --- used for pattern matching (output the line which containing that pattern)
+awk '{print substr($7, 6, length($7)) " " substr($4, 1, length($4) -1)}' --- used for pattern then action method (perform action when pattern  		                                                                         matches) 
+sort -n --- sort the input 
+awk '{print $2 " " $1 "ms"}' --- print 2nd word followed by 1st word followed by ms
+head -n 10 --- print top 10 lines of input
+| --- pipe (to use the output of previous command as an input of cuurent cpmmand)
+
+
+Explanation --- we are downloading a file which has IP addresses in the first column and after that we filter out this IP addresses from the file to ping the 50 Ip addresses and used awk for printing the specific string we want.
